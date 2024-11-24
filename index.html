@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>React入門</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .slide {
+            height: 100vh;
+            display: none;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+        }
+        .slide.active {
+            display: block;
+        }
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            gap: 1rem;
+            display: flex;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #61dafb;
+            color: #282c34;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4fa8c7;
+        }
+        .code {
+            background: #282c34;
+            color: #61dafb;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre;
+        }
+        h1 {
+            color: #282c34;
+            border-bottom: 3px solid #61dafb;
+            padding-bottom: 0.5rem;
+        }
+        .page-number {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide active">
+        <h1>React入門</h1>
+        <h2>現代のWebフロントエンド開発の第一歩</h2>
+        <ul>
+            <li>Reactとは？</li>
+            <li>コンポーネント指向</li>
+            <li>仮想DOM</li>
+            <li>JSX構文</li>
+        </ul>
+        <div class="page-number">1/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>Reactとは？</h1>
+        <p>Reactは、Facebookが開発したJavaScriptライブラリです。</p>
+        <ul>
+            <li>ユーザーインターフェースを構築するためのライブラリ</li>
+            <li>コンポーネントベースのアーキテクチャ</li>
+            <li>大規模なアプリケーションでも高いパフォーマンスを実現</li>
+            <li>豊富なエコシステムとコミュニティ</li>
+        </ul>
+        <div class="page-number">2/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>コンポーネント指向</h1>
+        <p>UIを再利用可能な部品（コンポーネント）として考えます。</p>
+        <div class="code">
+// Buttonコンポーネントの例
+function Button({ text, onClick }) {
+  return (
+    <button onClick={onClick}>
+      {text}
+    </button>
+  );
+}
+        </div>
+        <p>コンポーネントは：</p>
+        <ul>
+            <li>再利用可能</li>
+            <li>独立して管理可能</li>
+            <li>テストが容易</li>
+        </ul>
+        <div class="page-number">3/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>JSX構文</h1>
+        <p>JavaScriptの中にHTMLライクな記述が可能です。</p>
+        <div class="code">
+function Welcome() {
+  const name = "ユーザー";
+  return (
+    <div>
+      <h1>こんにちは、{name}さん！</h1>
+      <p>JSXを使うと直感的にUIを書けます</p>
+    </div>
+  );
+}
+        </div>
+        <div class="page-number">4/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>Props</h1>
+        <p>コンポーネントにデータを渡す方法です。</p>
+        <div class="code">
+// 親コンポーネント
+function App() {
+  return <Greeting name="太郎" />;
+}
+
+// 子コンポーネント
+function Greeting({ name }) {
+  return <h1>こんにちは、{name}さん！</h1>;
+}
+        </div>
+        <div class="page-number">5/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>State</h1>
+        <p>コンポーネントの状態を管理します。</p>
+        <div class="code">
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>カウント: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        増やす
+      </button>
+    </div>
+  );
+}
+        </div>
+        <div class="page-number">6/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>イベントハンドリング</h1>
+        <p>ユーザーの操作に応答します。</p>
+        <div class="code">
+function Form() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('フォームが送信されました');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">送信</button>
+    </form>
+  );
+}
+        </div>
+        <div class="page-number">7/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>条件付きレンダリング</h1>
+        <p>状態に応じて異なるUIを表示できます。</p>
+        <div class="code">
+function Greeting({ isLoggedIn }) {
+  if (isLoggedIn) {
+    return <h1>おかえりなさい！</h1>;
+  } else {
+    return <h1>ログインしてください</h1>;
+  }
+}
+        </div>
+        <div class="page-number">8/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>リストのレンダリング</h1>
+        <p>配列データを元に要素を繰り返し表示できます。</p>
+        <div class="code">
+function TodoList() {
+  const todos = ['React学習', '買い物', '運動'];
+  
+  return (
+    <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>{todo}</li>
+      ))}
+    </ul>
+  );
+}
+        </div>
+        <div class="page-number">9/10</div>
+    </div>
+
+    <div class="slide">
+        <h1>まとめ</h1>
+        <h3>学習したこと：</h3>
+        <ul>
+            <li>Reactの基本概念</li>
+            <li>コンポーネントの作成方法</li>
+            <li>PropsとStateの使い方</li>
+            <li>イベント処理</li>
+            <li>条件付きレンダリング</li>
+            <li>リストレンダリング</li>
+        </ul>
+        <p>次のステップ：</p>
+        <ul>
+            <li>Hooksの詳細な使い方</li>
+            <li>ルーティング</li>
+            <li>状態管理（Redux/Context API）</li>
+        </ul>
+        <div class="page-number">10/10</div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSlide()">前へ</button>
+        <button onclick="nextSlide()">次へ</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
